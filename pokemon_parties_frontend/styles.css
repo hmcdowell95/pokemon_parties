@@ -1,0 +1,40 @@
+html, body {
+    height: 100%;
+    width: 100%;
+  }
+
+  body {background-color: rgb(51, 255, 51);
+    }
+
+
+  .wrapper {
+    background: #fff;
+    margin: 16px auto;
+    max-width: 960px;
+    padding: 2.25%; /* 18px / 800px */
+    width: 85%;
+  }
+
+  h1 {
+    font-size: 36px;
+    text-decoration: underline;
+    line-height: 54px;
+  }
+
+  h2 {
+    border-bottom: 2px solid #ccc;
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 36px;
+  }
+
+  p {font-size: 30px;}
+
+  li {
+    font-size: 24px;
+  }
