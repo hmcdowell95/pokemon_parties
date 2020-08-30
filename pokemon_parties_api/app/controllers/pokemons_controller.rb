@@ -8,5 +8,10 @@ class PokemonsController < ApplicationController
         Pokemon.create(nickname: params[:nickname], species: params[:species], type: params[:type], level: params[:level], game_id: params[:game_id])
     end
 
+    def update
+        pokemon = Pokemon.find(params[:id])
+        pokemon.update(nickname: params[:nickname], level: params[:level])
+    end
+
     
 end
