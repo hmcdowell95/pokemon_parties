@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nickname: MyString
+  species: MyString
+  type: 
+  level: MyString
+  game: one
+
+two:
+  nickname: MyString
+  species: MyString
+  type: 
+  level: MyString
+  game: two
