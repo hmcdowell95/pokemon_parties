@@ -28,7 +28,7 @@ html, body {
 
   h2 {
     border-bottom: 2px solid #ccc;
-    font-size: 24px;
+    font-size: 30px;
     line-height: 36px;
     margin-bottom: 16px;
   }
@@ -38,7 +38,7 @@ html, body {
     line-height: 36px;
   }
 
-  p {font-size: 30px;}
+  p {font-size: 24px;}
 
   li {
     font-size: 24px;
