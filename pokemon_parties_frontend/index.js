@@ -33,3 +33,7 @@ function new_game(game) {
     <ul></ul>`;
     document.getElementsByTagName("body")[0].appendChild(a);
 }
+
+function create_game(game) {
+    
+}
