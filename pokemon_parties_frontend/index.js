@@ -15,7 +15,7 @@ function rendergames(info) {
         a.id = game.id;
         a.innerHTML = `<h2>${game.name}</h2>
         <button data-game-id="${game.id}">Add Pokemon</button>
-        <form id="${game.name}" class="hidden">
+        <form id="${game.name}" style="display: none">
         <input type="hidden" id="train" value="${game.id}">
         <label>Pokemon species:</label>
         <input type="text" id="new_species"><br>
