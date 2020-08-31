@@ -14,7 +14,7 @@ function rendergames(info) {
         a.className = "card";
         a.id = game.id;
         a.innerHTML = `<h2>${game.name}</h2>
-        <button data-game-id="${game.id}">Add Pokemon</button>
+        <button data-game-id="${game.id}" class="add">Add Pokemon</button>
         <form id="${game.name}" style="display: none">
         <input type="hidden" id="train" value="${game.id}">
         <label>Pokemon species:</label>
@@ -29,3 +29,4 @@ function rendergames(info) {
         document.getElementsByTagName("body")[0].appendChild(a);
     }
 }
+
