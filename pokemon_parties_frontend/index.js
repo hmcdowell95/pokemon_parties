@@ -61,10 +61,15 @@ document.getElementById('create_game').addEventListener("click", function(e) {
     document.getElementById('new_trainer').value = "";
 })
 
+function Pokemon(species, nickname, type, level, game_id) {
+    return {species, nickname, type, level, game_id}
+}
+
 function add_pokemon(b) {
     b.preventDefault();
     console.log(b.path)
     // checks if valid pokemon and grabs types
+    // create pokemon class object
     // then run fetch to create
     // and put on page
 }
