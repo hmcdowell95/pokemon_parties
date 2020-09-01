@@ -18,7 +18,7 @@ function new_game(game) {
     let a = document.createElement("div");
     a.className = "card";
     a.id = game.id;
-    a.innerHTML = `<h2>${game.name}</h2>
+    a.innerHTML = `<h2>${game.name}</h2><p>Trainer: ${game.trainer_name}</p>
     <button data-game-id="${game.id}" class="add">Add Pokemon</button>
     <form id="${game.name}" style="display: none">
     <input type="hidden" id="train" value="${game.id}">
@@ -32,6 +32,9 @@ function new_game(game) {
     </form>
     <ul></ul>`;
     document.getElementsByTagName("main")[0].appendChild(a);
+    a.children[2].addEventListener("click", function() {
+        document.getElementById(`${game.name}`).style.display="block"
+    })
 }
 
 function create_game() {
@@ -55,3 +58,9 @@ document.getElementById('create_game').addEventListener("click", function(e) {
     document.getElementById('new_game').value = "";
     document.getElementById('new_trainer').value = "";
 })
+
+function add_pokemon() {
+    // checks if valid pokemon and grabs types
+    // then run fetch to create
+    // and put on page
+}
