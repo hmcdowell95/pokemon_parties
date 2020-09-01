@@ -5,7 +5,8 @@ const POKEMON_URL = `${BASE_URL}/pokemons`
 document.addEventListener("DOMContentLoaded", function() {
     fetch(GAME_URL)
     .then(resp => resp.json())
-    .then(json => rendergames(json))
+    .then(json => rendergames(json));
+    
 })
 
 function rendergames(info) {
@@ -28,13 +29,14 @@ function new_game(game) {
     <input type="text" id="new_name"><br>
     <label>Level:</label>
     <input type="text" id="levels"><br>
-    <input type="submit" id="submit-pokemon">
+    <input type="submit" class="submit-pokemon">
     </form>
     <ul></ul>`;
     document.getElementsByTagName("main")[0].appendChild(a);
     a.children[2].addEventListener("click", function() {
         document.getElementById(`${game.name}`).style.display="block"
-    })
+    });
+    a.children[3].getElementsByClassName('submit-pokemon')[0].addEventListener("click", e => add_pokemon(e))
 }
 
 function create_game() {
@@ -59,7 +61,9 @@ document.getElementById('create_game').addEventListener("click", function(e) {
     document.getElementById('new_trainer').value = "";
 })
 
-function add_pokemon() {
+function add_pokemon(b) {
+    b.preventDefault();
+    console.log(b.path)
     // checks if valid pokemon and grabs types
     // then run fetch to create
     // and put on page
