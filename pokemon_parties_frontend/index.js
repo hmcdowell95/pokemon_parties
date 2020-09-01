@@ -34,6 +34,24 @@ function new_game(game) {
     document.getElementsByTagName("body")[0].appendChild(a);
 }
 
-function create_game(game) {
-    
+function create_game() {
+    let n = document.getElementById('new_game').value;
+    let t = document.getElementById('new_trainer').value;
+    const config = {method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+    },
+    body: JSON.stringify({name: n, trainer_name: t})
+    };
+    fetch(GAME_URL, config)
+    .then(response => {if (response.ok) {console.log("yes"); console.log(response)} else {console.log("no")}})
+    // .then(data => console.log(data))
 }
+
+document.getElementById('create_game').addEventListener("click", function(e) {
+    e.preventDefault();
+    create_game();
+    document.getElementById('new_game').value = "";
+    document.getElementById('new_trainer').value = "";
+})
