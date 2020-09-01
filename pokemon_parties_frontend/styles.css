@@ -1,6 +1,4 @@
 html, body {
-    height: 100%;
-    width: 100%;
     text-align: center;
   }
 
@@ -14,12 +12,20 @@ html, body {
     max-width: 960px;
     padding: 2.25%; /* 18px / 800px */
     width: 30%;
+    border-radius: 25px;
   }
 
+  main {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+
+  }
   .card {
     background: rgb(147, 164, 255);
-    position: static;
-    width: 40%;
+    position: relative;
+    border-radius: 10px;
+    align-self: center;
   }
 
   h1 {

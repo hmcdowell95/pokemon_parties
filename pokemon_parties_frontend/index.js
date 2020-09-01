@@ -31,7 +31,7 @@ function new_game(game) {
     <input type="submit" id="submit-pokemon">
     </form>
     <ul></ul>`;
-    document.getElementsByTagName("body")[0].appendChild(a);
+    document.getElementsByTagName("main")[0].appendChild(a);
 }
 
 function create_game() {
@@ -45,7 +45,7 @@ function create_game() {
     body: JSON.stringify({name: n, trainer_name: t})
     };
     fetch(GAME_URL, config)
-    .then(response => {if (response.ok) {console.log("yes"); console.log(response)} else {console.log("no")}})
+    // .then(response => response.json())
     // .then(data => console.log(data))
 }
 
