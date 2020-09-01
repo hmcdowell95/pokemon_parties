@@ -42,6 +42,7 @@ function new_game(game) {
 function create_game() {
     let n = document.getElementById('new_game').value;
     let t = document.getElementById('new_trainer').value;
+    if (n.trim() === "" || t.trim() === "") {return alert("inputs cannot be blank")}
     const config = {method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -62,12 +63,18 @@ document.getElementById('create_game').addEventListener("click", function(e) {
 })
 
 function Pokemon(species, nickname, type, level, game_id) {
-    return {species, nickname, type, level, game_id}
+    this.species = species;
+    this.nickname = nickname;
+    this.type = type;
+    this.level = level;
+    this.game_id = game_id;
 }
+// ^^^ add level up function
 
 function add_pokemon(b) {
     b.preventDefault();
-    console.log(b.path)
+    let f = b.path[1].getElementsByTagName('input');
+    fetch(`https://pokeapi.co/api/v2/pokemon/`)
     // checks if valid pokemon and grabs types
     // create pokemon class object
     // then run fetch to create
