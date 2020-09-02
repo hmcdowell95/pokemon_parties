@@ -88,11 +88,13 @@ function add_pokemon(b) {
         if (n === "") {n = s};
         if (isNaN(l) || l < 1 || l > 100) {l = 1};
         let newpokemon = new Pokemon(s, n, ty, l, parseInt(form_inputs[0].value));
-        // make fetch function and add here 
-        // make function to put onto page and add here
+        add_to_database(newpokemon);
+        pokemon_on_page(newpokemon);
+        form_inputs[1].value = "";
+        form_inputs[2].value = "";
+        form_inputs[3].value = "";
+        b.path[1].style.display="none";
     }
-    // then run fetch to create
-    // and put on page with outside function (still need to make)
 }
 
 function add_to_database(p) {
@@ -109,6 +111,7 @@ function add_to_database(p) {
 function pokemon_on_page(p) {
     let parent = document.getElementById(p.game_id).lastChild;
     let poke = document.createElement('li');
+    console.log(p)
     poke.innerHTML = `<p>Name: ${p.nickname}, Species: ${p.species}</p>
     <p>Type: ${p.type}, Level: ${p.level}</p><button class="remove">Release</button>`;
     parent.appendChild(poke);
