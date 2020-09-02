@@ -29,7 +29,7 @@ function new_game(game) {
     a.className = "card";
     a.id = game.id;
     a.innerHTML = `<h2>${game.name}</h2><p>Trainer: ${game.trainer_name}</p>
-    <button data-game-id="${game.id}" class="add">Add Pokemon</button>
+    <button>Add Pokemon</button>
     <form id="${game.name}" style="display: none">
     <input type="hidden" id="train" value="${game.id}">
     <label>Pokemon species:</label>
@@ -121,7 +121,7 @@ function add_to_database(p) {
 function pokemon_on_page(p) {
     let parent = document.getElementById(p.game_id).lastChild;
     let poke = document.createElement('li');
-    poke.id = p.id;
+    poke.dataset.poke_id = p.id;
     poke.innerHTML = `<p>Name: ${p.nickname}, Species: ${p.species}</p>
     <p>Type: ${p.typez}, Level: ${p.level}</p><button class="remove">Release</button>`;
     parent.appendChild(poke);
