@@ -3,7 +3,7 @@ class CreatePokemons < ActiveRecord::Migration[6.0]
     create_table :pokemons do |t|
       t.string :nickname
       t.string :species
-      t.string :type
+      t.string :typez
       t.integer :level
       t.references :game, null: false, foreign_key: true
 

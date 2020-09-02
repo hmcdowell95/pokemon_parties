@@ -5,7 +5,7 @@ class PokemonsController < ApplicationController
     end
 
     def create
-        Pokemon.create(nickname: params[:nickname], species: params[:species], type: params[:type], level: params[:level], game_id: params[:game_id])
+        Pokemon.create(nickname: params[:nickname], species: params[:species], typez: params[:typez], level: params[:level], game_id: params[:game_id])
     end
 
     def update

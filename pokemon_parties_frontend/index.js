@@ -65,7 +65,7 @@ document.getElementById('create_game').addEventListener("click", function(e) {
 function Pokemon(species, nickname, type, level, game_id) {
     this.species = species;
     this.nickname = nickname;
-    this.type = type;
+    this.typez = type;
     this.level = level;
     this.game_id = game_id;
 }
@@ -111,11 +111,10 @@ function add_to_database(p) {
 function pokemon_on_page(p) {
     let parent = document.getElementById(p.game_id).lastChild;
     let poke = document.createElement('li');
-    console.log(p)
     poke.innerHTML = `<p>Name: ${p.nickname}, Species: ${p.species}</p>
-    <p>Type: ${p.type}, Level: ${p.level}</p><button class="remove">Release</button>`;
+    <p>Type: ${p.typez}, Level: ${p.level}</p><button class="remove">Release</button>`;
     parent.appendChild(poke);
     // add lister for button
 }
 
-// make lister function here
+// make lister release function here

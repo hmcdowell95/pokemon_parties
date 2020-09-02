@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_08_30_184732) do
   create_table "pokemons", force: :cascade do |t|
     t.string "nickname"
     t.string "species"
-    t.string "type"
+    t.string "typez"
     t.integer "level"
     t.integer "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
