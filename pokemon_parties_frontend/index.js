@@ -107,6 +107,12 @@ function add_to_database(p) {
 }
 
 function pokemon_on_page(p) {
-    let parent = document.getElementById(p.id).lastChild;
-    
+    let parent = document.getElementById(p.game_id).lastChild;
+    let poke = document.createElement('li');
+    poke.innerHTML = `<p>Name: ${p.nickname}, Species: ${p.species}</p>
+    <p>Type: ${p.type}, Level: ${p.level}</p><button class="remove">Release</button>`;
+    parent.appendChild(poke);
+    // add lister for button
 }
+
+// make lister function here
