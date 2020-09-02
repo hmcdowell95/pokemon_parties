@@ -6,12 +6,21 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch(GAME_URL)
     .then(resp => resp.json())
     .then(json => rendergames(json));
-    
+    setTimeout(() => 
+    fetch(POKEMON_URL)
+    .then(resp => resp.json())
+    .then(json => renderPokemon(json)), 500)
 })
 
 function rendergames(info) {
     for (const game of info) {
         new_game(game)
+    }
+}
+
+function renderPokemon(emAll) {
+    for (const pokemon of emAll) {
+        pokemon_on_page(pokemon)
     }
 }
 
@@ -51,8 +60,8 @@ function create_game() {
     body: JSON.stringify({name: n, trainer_name: t})
     };
     fetch(GAME_URL, config)
-    // .then(response => response.json())
-    // .then(data => console.log(data))
+    .then(response => response.json())
+    .then(data => new_game(data))
 }
 
 document.getElementById('create_game').addEventListener("click", function(e) {
@@ -89,7 +98,6 @@ function add_pokemon(b) {
         if (isNaN(l) || l < 1 || l > 100) {l = 1};
         let newpokemon = new Pokemon(s, n, ty, l, parseInt(form_inputs[0].value));
         add_to_database(newpokemon);
-        pokemon_on_page(newpokemon);
         form_inputs[1].value = "";
         form_inputs[2].value = "";
         form_inputs[3].value = "";
@@ -106,11 +114,14 @@ function add_to_database(p) {
         body: JSON.stringify(p)
     };
     fetch(POKEMON_URL, config)
+    .then(resp => resp.json())
+    .then(poke => pokemon_on_page(poke))
 }
 
 function pokemon_on_page(p) {
     let parent = document.getElementById(p.game_id).lastChild;
     let poke = document.createElement('li');
+    poke.id = p.id;
     poke.innerHTML = `<p>Name: ${p.nickname}, Species: ${p.species}</p>
     <p>Type: ${p.typez}, Level: ${p.level}</p><button class="remove">Release</button>`;
     parent.appendChild(poke);
