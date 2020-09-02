@@ -74,7 +74,16 @@ function Pokemon(species, nickname, type, level, game_id) {
 function add_pokemon(b) {
     b.preventDefault();
     let f = b.path[1].getElementsByTagName('input');
-    fetch(`https://pokeapi.co/api/v2/pokemon/`)
+    f[1].value = f[1].value.toLowerCase();
+    if (f[1].value.trim() === "") {return alert("Species can't be blank")}
+    fetch(`https://pokeapi.co/api/v2/pokemon/${f[1].value}`)
+    .then(resp => {if (resp.ok) {return resp.json()} else {throw new Error("Invalid species")}})
+    .then(json => {get_types(json.types.map(x => x.type.name))})
+    .catch((error) => alert(error));
+    function get_types(t) {
+        let ty = t.join(" and ");
+        console.log(f[1].value)
+    }
     // checks if valid pokemon and grabs types
     // create pokemon class object
     // then run fetch to create
