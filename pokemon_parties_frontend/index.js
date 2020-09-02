@@ -73,19 +73,40 @@ function Pokemon(species, nickname, type, level, game_id) {
 
 function add_pokemon(b) {
     b.preventDefault();
-    let f = b.path[1].getElementsByTagName('input');
-    f[1].value = f[1].value.toLowerCase();
-    if (f[1].value.trim() === "") {return alert("Species can't be blank")}
-    fetch(`https://pokeapi.co/api/v2/pokemon/${f[1].value}`)
+    let form_inputs = b.path[1].getElementsByTagName('input');
+    form_inputs[1].value = form_inputs[1].value.toLowerCase();
+    if (form_inputs[1].value.trim() === "") {return alert("Species can't be blank")}
+    fetch(`https://pokeapi.co/api/v2/pokemon/${form_inputs[1].value}`)
     .then(resp => {if (resp.ok) {return resp.json()} else {throw new Error("Invalid species")}})
     .then(json => {get_types(json.types.map(x => x.type.name))})
     .catch((error) => alert(error));
     function get_types(t) {
         let ty = t.join(" and ");
-        console.log(f[1].value)
+        let s = form_inputs[1].value.charAt(0).toUpperCase() + form_inputs[1].value.slice(1);
+        let n = form_inputs[2].value.trim();
+        let l = parseInt(form_inputs[3].value);
+        if (n === "") {n = s};
+        if (isNaN(l) || l < 1 || l > 100) {l = 1};
+        let newpokemon = new Pokemon(s, n, ty, l, parseInt(form_inputs[0].value));
+        // make fetch function and add here 
+        // make function to put onto page and add here
     }
-    // checks if valid pokemon and grabs types
-    // create pokemon class object
     // then run fetch to create
-    // and put on page
+    // and put on page with outside function (still need to make)
+}
+
+function add_to_database(p) {
+    let config = {method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+        },
+        body: JSON.stringify(p)
+    };
+    fetch(POKEMON_URL, config)
+}
+
+function pokemon_on_page(p) {
+    let parent = document.getElementById(p.id).lastChild;
+    
 }

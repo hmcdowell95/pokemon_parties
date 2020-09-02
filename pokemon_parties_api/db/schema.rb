@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_08_30_184732) do
     t.string "nickname"
     t.string "species"
     t.string "type"
-    t.string "level"
+    t.integer "level"
     t.integer "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
