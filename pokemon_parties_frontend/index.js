@@ -28,7 +28,7 @@ function new_game(game) {
     let a = document.createElement("div");
     a.className = "card";
     a.id = game.id;
-    a.innerHTML = `<h2>${game.name}</h2><p>Trainer: ${game.trainer_name}</p>
+    a.innerHTML = `<h2>${game.name}<button class="delete">Delete Party</button></h2><p>Trainer: ${game.trainer_name}</p>
     <button>Add Pokemon</button>
     <form id="${game.name}" style="display: none">
     <input type="hidden" id="train" value="${game.id}">
@@ -145,4 +145,6 @@ function release(b) {
     // run level up function which will update api
     // change level on page
 
-// make delete for game
+function delete_party(b) {
+
+}

@@ -51,3 +51,7 @@ html, body {
   li {
     font-size: 24px;
   }
+
+  .delete {
+    margin-left: 1em;
+  }
