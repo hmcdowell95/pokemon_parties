@@ -125,7 +125,24 @@ function pokemon_on_page(p) {
     poke.innerHTML = `<p>Name: ${p.nickname}, Species: ${p.species}</p>
     <p>Type: ${p.typez}, Level: ${p.level}</p><button class="remove">Release</button>`;
     parent.appendChild(poke);
-    // add lister for button
+    poke.lastChild.addEventListener("click", e => release(e))
 }
 
-// make lister release function here
+function release(b) {
+    let parent = b.path[1];
+    let i = parseInt(parent.dataset.poke_id);
+    let obj = {method: "DELETE",
+    headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+    }
+    };
+    fetch(`${POKEMON_URL}/${i}`, obj);
+    parent.remove()
+}
+
+// make listener for level up in pokemon_on_page
+    // run level up function which will update api
+    // change level on page
+
+// make delete for game
