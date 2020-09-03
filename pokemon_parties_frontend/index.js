@@ -28,7 +28,8 @@ function new_game(game) {
     let a = document.createElement("div");
     a.className = "card";
     a.id = game.id;
-    a.innerHTML = `<h2>${game.name}<button class="delete">Delete Party</button></h2><p>Trainer: ${game.trainer_name}</p>
+    a.innerHTML = `<h2>${game.name}<button class="delete">Delete Party</button></h2>
+    <p>Trainer: ${game.trainer_name}</p>
     <button>Add Pokemon</button>
     <form id="${game.name}" style="display: none">
     <input type="hidden" id="train" value="${game.id}">
@@ -83,7 +84,9 @@ function Pokemon(species, nickname, type, level, game_id) {
 
 function add_pokemon(b) {
     b.preventDefault();
-    // stop from adding more than 6 pokemon
+    if (b.path[2].lastChild.children.length === 6) {
+        return alert('You cannot have more than 6 pokemon in a party!')
+    };
     let form_inputs = b.path[1].getElementsByTagName('input');
     form_inputs[1].value = form_inputs[1].value.toLowerCase();
     if (form_inputs[1].value.trim() === "") {return alert("Species can't be blank")}
@@ -125,9 +128,15 @@ function pokemon_on_page(p) {
     let poke = document.createElement('li');
     poke.dataset.poke_id = p.id;
     poke.innerHTML = `<p>Name: ${p.nickname}, Species: ${p.species}</p>
-    <p>Type: ${p.typez}, Level: ${p.level}</p><button class="remove">Release</button>`;
+    <p>Type: ${p.typez}, Level: ${p.level}</p>
+    <button class="levelup">Level Up</button><button class="remove">Release</button>`;
     parent.appendChild(poke);
-    poke.lastChild.addEventListener("click", e => release(e.path[1]))
+    poke.lastChild.addEventListener("click", e => release(e.path[1]));
+    poke.getElementsByClassName("levelup")[0].addEventListener("click", function(e) {
+        let a = e.path[1].dataset.poke_id;
+        let d = e.path[3].id;
+        level_up(d, a)
+    })
 }
 
 function release(b) {
