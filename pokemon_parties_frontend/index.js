@@ -45,7 +45,8 @@ function new_game(game) {
     a.children[2].addEventListener("click", function() {
         document.getElementById(`${game.name}`).style.display="block"
     });
-    a.children[3].getElementsByClassName('submit-pokemon')[0].addEventListener("click", e => add_pokemon(e))
+    a.children[3].getElementsByClassName('submit-pokemon')[0].addEventListener("click", e => add_pokemon(e));
+    a.children[0].lastChild.addEventListener("click", e => delete_party(e))
 }
 
 function create_game() {
@@ -82,6 +83,7 @@ function Pokemon(species, nickname, type, level, game_id) {
 
 function add_pokemon(b) {
     b.preventDefault();
+    // stop from adding more than 6 pokemon
     let form_inputs = b.path[1].getElementsByTagName('input');
     form_inputs[1].value = form_inputs[1].value.toLowerCase();
     if (form_inputs[1].value.trim() === "") {return alert("Species can't be blank")}
@@ -125,11 +127,11 @@ function pokemon_on_page(p) {
     poke.innerHTML = `<p>Name: ${p.nickname}, Species: ${p.species}</p>
     <p>Type: ${p.typez}, Level: ${p.level}</p><button class="remove">Release</button>`;
     parent.appendChild(poke);
-    poke.lastChild.addEventListener("click", e => release(e))
+    poke.lastChild.addEventListener("click", e => release(e.path[1]))
 }
 
 function release(b) {
-    let parent = b.path[1];
+    let parent = b;
     let i = parseInt(parent.dataset.poke_id);
     let obj = {method: "DELETE",
     headers: {
@@ -146,5 +148,17 @@ function release(b) {
     // change level on page
 
 function delete_party(b) {
-
+    let parent = b.path[2];
+    let pokemons = parent.lastChild.children;
+    for (const p of pokemons) {
+        release(p)
+    }
+    let obj = {method: "DELETE",
+    headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+    }
+    };
+    fetch(`${GAME_URL}/${parent.id}`, obj);
+    parent.remove()
 }
