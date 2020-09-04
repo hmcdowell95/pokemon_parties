@@ -49,7 +49,9 @@ html, body {
   p {font-size: 24px;}
 
   li {
+    background: rgb(150, 200, 255);
     font-size: 24px;
+    margin-right: 15px;
   }
 
   .delete {

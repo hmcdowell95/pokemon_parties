@@ -41,13 +41,15 @@ function new_game(game) {
     <input type="text" id="levels"><br>
     <input type="submit" class="submit-pokemon">
     </form>
-    <ul></ul>`;
+    <ol></ol>`;
     document.getElementsByTagName("main")[0].appendChild(a);
     a.children[2].addEventListener("click", function() {
         document.getElementById(`${game.name}`).style.display="block"
     });
     a.children[3].getElementsByClassName('submit-pokemon')[0].addEventListener("click", e => add_pokemon(e));
-    a.children[0].lastChild.addEventListener("click", e => delete_party(e))
+    a.children[0].lastChild.addEventListener("click", e => {
+        if (confirm("Are you sure?")) {delete_party(e)}
+    })
 }
 
 function create_game() {
@@ -80,7 +82,6 @@ function Pokemon(species, nickname, type, level, game_id) {
     this.level = level;
     this.game_id = game_id;
 }
-// ^^^ add level up function
 
 function add_pokemon(b) {
     b.preventDefault();
@@ -131,7 +132,8 @@ function pokemon_on_page(p) {
     <p>Type: ${p.typez}, Level: <span>${p.level}</span></p>
     <button class="levelup">Level Up</button><button class="remove">Release</button>`;
     parent.appendChild(poke);
-    poke.lastChild.addEventListener("click", e => release(e.path[1]));
+    poke.lastChild.addEventListener("click", e => {
+        if (confirm("Are you sure?")) {release(e.path[1])}});
     poke.getElementsByClassName("levelup")[0].addEventListener("click", function(e) {
         let a = e.path[1].dataset.poke_id;
         let d = e.path[3].id;
