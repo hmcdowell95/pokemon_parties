@@ -128,7 +128,7 @@ function pokemon_on_page(p) {
     let poke = document.createElement('li');
     poke.dataset.poke_id = p.id;
     poke.innerHTML = `<p>Name: ${p.nickname}, Species: ${p.species}</p>
-    <p>Type: ${p.typez}, Level: ${p.level}</p>
+    <p>Type: ${p.typez}, Level: <span>${p.level}</span></p>
     <button class="levelup">Level Up</button><button class="remove">Release</button>`;
     parent.appendChild(poke);
     poke.lastChild.addEventListener("click", e => release(e.path[1]));
@@ -152,9 +152,25 @@ function release(b) {
     parent.remove()
 }
 
-// make listener for level up in pokemon_on_page
-    // run level up function which will update api
-    // change level on page
+function level_up(game_id, pokemon_id) {
+    let ls = document.getElementById(game_id).lastChild.children;
+    for (const x of ls) {
+        if (x.dataset.poke_id === pokemon_id) {
+            let c = x.children[1].lastChild.innerText;
+            let lev = parseInt(c) + 1;
+            x.children[1].lastChild.innerText = lev;
+            obj = {
+                method: "PATCH",
+                headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+                },
+                body: JSON.stringify({level: lev})
+                };
+            fetch(`${POKEMON_URL}/${pokemon_id}`, obj)
+        }
+    }
+}
 
 function delete_party(b) {
     let parent = b.path[2];

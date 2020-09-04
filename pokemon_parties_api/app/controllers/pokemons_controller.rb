@@ -11,7 +11,8 @@ class PokemonsController < ApplicationController
 
     def update
         pokemon = Pokemon.find(params[:id])
-        pokemon.update(nickname: params[:nickname], level: params[:level])
+        pokemon.update(level: params[:level])
+        render json: pokemon
     end
 
     def destroy
